@@ -3,7 +3,7 @@
 # Recipe:: tls
 #
 # Copyright (C) 2014 Matt Veitas
-# 
+#
 # All rights reserved - Do Not Redistribute
 #
 
@@ -15,7 +15,7 @@ cert_path = node['loggly']['tls']['cert_path']
 
 directory cert_path do
   owner 'root'
-  group 'syslog'
+  group 'adm'
   mode 0755
   action :create
   recursive true
@@ -41,7 +41,7 @@ remote_file 'download intermediate cert' do
   source node['loggly']['tls']['intermediate_cert_url']
   checksum node['loggly']['tls']['intermediate_cert_checksum']
 end
-  
+
 bash 'bundle certificate' do
   user 'root'
   cwd cert_path
